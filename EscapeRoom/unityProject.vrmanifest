@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.escaperoom.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "C:\\escaperoom\\escape-room\\EscapeRoom\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "EscapeRoom [Testing]"
+        }
+      }
+    }
+  ]
+}
