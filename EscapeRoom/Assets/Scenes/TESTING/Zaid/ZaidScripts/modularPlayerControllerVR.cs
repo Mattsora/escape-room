@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR;
+using Valve.VR.InteractionSystem;
 public class modularPlayerControllerVR : MonoBehaviour
 {
     public Camera pCamera; //The main camera of the scene
