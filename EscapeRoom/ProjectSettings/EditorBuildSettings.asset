@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/aaron/mainmenuscene.unity
+    guid: 7e143755f1ef81540863027abfe52638
+  - enabled: 1
+    path: Assets/Scenes/aaron/EscapeRoomAaronScene.unity
+    guid: c4b5bfa647063414d8623768bc0f4235
   m_configObjects: {}
