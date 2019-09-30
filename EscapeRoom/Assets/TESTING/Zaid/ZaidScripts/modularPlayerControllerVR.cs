@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VR;
+using Valve.VR.InteractionSystem;
+using Valve.VR;
+using Cinemachine;
 public class modularPlayerControllerVR : MonoBehaviour
 {
     public Camera pCamera; //The main camera of the scene
@@ -9,23 +12,37 @@ public class modularPlayerControllerVR : MonoBehaviour
     public bool VR_ModeEnabled; //Determines if VR accomidations must be met or not.
     public float pWalkSpeed; //The walk speed of the player
     public bool movingStick; //Determines if moveInput is being changed by player.
-    
+    public SteamVR_Input_Sources moveHandType;
+    public SteamVR_Action_Vector2 moveVR;
+    public SteamVR_Action_Vector2 lookVR;
+    public LayerMask physicsLayer;
     public LayerMask pSolidLayer; //The Solid Layer for the controller (Useful for ground checking)
     public Vector3 moveDirection; //The move direction for the player controller.
     Vector3 cameraForward, cameraRight;
     Vector2 moveInput; //The input we get from Vive and Controller 
+    Vector2 lookInput;
     // Start is called before the first frame update
     void Start()
     {
         pCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>() ; //Get the active scene camera at the begining of the scene
         pRigidbody = GetComponent<Rigidbody>();
-        
+        moveVR = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("default", "move");
+        lookVR = SteamVR_Input.GetAction<SteamVR_Action_Vector2>("default", "look");
     }
     void getInput()
     {
         movingStick = false;
-        moveInput.x = Input.GetAxis("Horizontal");
-        moveInput.y = Input.GetAxis("Vertical");
+        if (!VR_ModeEnabled)
+        {
+            moveInput.x = Input.GetAxis("Horizontal");
+            moveInput.y = Input.GetAxis("Vertical");
+        }
+        else
+        {
+            moveInput = moveVR.GetAxis(SteamVR_Input_Sources.LeftHand);
+            lookInput = lookVR.GetAxis(SteamVR_Input_Sources.RightHand);
+        }
+       
         if(moveInput.magnitude>0)
         {
             movingStick = true;
@@ -44,21 +61,38 @@ public class modularPlayerControllerVR : MonoBehaviour
         cameraRight.y = 0;
 
         moveDirection = cameraForward * moveInput.y + cameraRight * moveInput.x;
-        Debug.Log(moveDirection);
+       
     }
     
     void movePlayer()
     {
+        pRigidbody.freezeRotation = true;
         if(movingStick)
         {
             pRigidbody.velocity = moveDirection * pWalkSpeed * Time.deltaTime;
         }
-        pRigidbody.freezeRotation = true;
-    }
+        if (lookInput.x > 0.52f)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 100.52f * Time.deltaTime, transform.eulerAngles.z);
+        }
+        if (lookInput.x < -0.52f)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y -100.52f * Time.deltaTime, transform.eulerAngles.z);
+        }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.gameObject.layer == physicsLayer.value)
+        {
+            Physics.IgnoreCollision(collision.collider, this.GetComponent<Collider>(), true);
+        }
+    }
+    
     // Update is called once per frame
     void Update()
     {
+        
         if(VR_ModeEnabled)
         {
             pCamera.stereoTargetEye = StereoTargetEyeMask.Both;
@@ -66,6 +100,7 @@ public class modularPlayerControllerVR : MonoBehaviour
         else
         {
             pCamera.stereoTargetEye = StereoTargetEyeMask.None;
+            pCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 95f;
         }
         getInput();
         getCameraDirection();

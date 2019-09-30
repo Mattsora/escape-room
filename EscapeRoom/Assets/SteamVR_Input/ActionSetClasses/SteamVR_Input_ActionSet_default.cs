@@ -73,7 +73,7 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Single Squeeze
+        public virtual SteamVR_Action_Boolean Squeeze
         {
             get
             {
@@ -86,6 +86,22 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.default_HeadsetOnHead;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 move
+        {
+            get
+            {
+                return SteamVR_Actions.default_move;
+            }
+        }
+        
+        public virtual SteamVR_Action_Vector2 look
+        {
+            get
+            {
+                return SteamVR_Actions.default_look;
             }
         }
         
