@@ -36,6 +36,7 @@ public class modularPlayerControllerVR : MonoBehaviour
         {
             moveInput.x = Input.GetAxis("Horizontal");
             moveInput.y = Input.GetAxis("Vertical");
+            pCamera.transform.position = transform.position + Vector3.up * 0.58f;
         }
         else
         {
