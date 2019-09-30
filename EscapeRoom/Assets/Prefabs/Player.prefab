@@ -49,7 +49,7 @@ MonoBehaviour:
   pCamera: {fileID: 0}
   pRigidbody: {fileID: 0}
   VR_ModeEnabled: 1
-  pWalkSpeed: 85
+  pWalkSpeed: 125
   movingStick: 0
   moveHandType: 0
   moveVR:
@@ -92,7 +92,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.2
-  m_Height: 1
+  m_Height: 1.25
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4232598952313114316
