@@ -28,8 +28,8 @@ public class HandGrabbing : MonoBehaviour
     void Update()
     {
         //update hand position and rotation
-        transform.localPosition = InputTracking.GetLocalPosition(NodeType);
-        transform.localRotation = InputTracking.GetLocalRotation(NodeType);
+        //transform.localPosition = InputTracking.GetLocalPosition(NodeType);
+        //transform.localRotation = InputTracking.GetLocalRotation(NodeType);
 
 
         //if we don't have an active object in hand, look if there is one in proximity

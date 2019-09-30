@@ -32,13 +32,21 @@
     },
     {
       "name": "/actions/default/in/Squeeze",
-      "type": "vector1",
+      "type": "boolean",
       "requirement": "optional"
     },
     {
       "name": "/actions/default/in/HeadsetOnHead",
       "type": "boolean",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/default/in/move",
+      "type": "vector2"
+    },
+    {
+      "name": "/actions/default/in/look",
+      "type": "vector2"
     },
     {
       "name": "/actions/default/out/Haptic",
@@ -142,7 +150,8 @@
       "/actions/default/in/SkeletonRightHand": "Skeleton (Right)",
       "/actions/default/in/Teleport": "Teleport",
       "/actions/default/out/Haptic": "Haptic",
-      "/actions/platformer/in/Jump": "Jump"
+      "/actions/platformer/in/Jump": "Jump",
+      "/actions/default/in/Squeeze": "Squeeze"
     }
   ]
 }

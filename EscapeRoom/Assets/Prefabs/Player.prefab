@@ -48,9 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pCamera: {fileID: 0}
   pRigidbody: {fileID: 0}
-  VR_ModeEnabled: 0
+  VR_ModeEnabled: 1
   pWalkSpeed: 85
   movingStick: 0
+  moveHandType: 0
+  moveVR:
+    actionPath: 
+    needsReinit: 0
+  lookVR:
+    actionPath: 
+    needsReinit: 0
+  physicsLayer:
+    serializedVersion: 2
+    m_Bits: 256
   pSolidLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -81,8 +91,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4232598952313114316
@@ -95,6 +105,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4232598952313531024}
   - component: {fileID: 4262714451924444950}
+  - component: {fileID: 67209307272161832}
+  - component: {fileID: 1006315083}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -150,6 +162,42 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   broadcastDeviceChanges: 1
+--- !u!114 &67209307272161832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232598952313114316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2e2b3a79a768e499ef8082a6b92bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 1
+  grabing:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  calculatedVelocity: {x: 0, y: 0, z: 0}
+  grabbingSomething: 0
+  tryingToGrabSomething: 0
+  maxGrabDistance: 32
+  SolidLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!135 &1006315083
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232598952313114316}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!1 &4232598952313314302
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,17 +394,17 @@ MonoBehaviour:
   wireframeHeight: 2
   drawWireframeWhenSelectedOnly: 0
   drawInGame: 0
-  size: 2
+  size: 3
   color: {r: 0, g: 1, b: 1, a: 1}
   vertices:
-  - {x: 1.5, y: 0.01, z: -1.125}
-  - {x: -1.5, y: 0.01, z: -1.125}
-  - {x: -1.5, y: 0.01, z: 1.125}
-  - {x: 1.5, y: 0.01, z: 1.125}
-  - {x: 1.65, y: 0.01, z: -1.275}
-  - {x: -1.65, y: 0.01, z: -1.275}
-  - {x: -1.65, y: 0.01, z: 1.275}
-  - {x: 1.65, y: 0.01, z: 1.275}
+  - {x: 1, y: 0.01, z: -0.75}
+  - {x: -1, y: 0.01, z: -0.75}
+  - {x: -1, y: 0.01, z: 0.75}
+  - {x: 1, y: 0.01, z: 0.75}
+  - {x: 1.15, y: 0.01, z: -0.9}
+  - {x: -1.15, y: 0.01, z: -0.9}
+  - {x: -1.15, y: 0.01, z: 0.9}
+  - {x: 1.15, y: 0.01, z: 0.9}
 --- !u!1 &4232598952313341162
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +415,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4232598952313589324}
   - component: {fileID: 4262714453274294430}
+  - component: {fileID: 576087483259470613}
+  - component: {fileID: 1271228238}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -422,6 +472,42 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   broadcastDeviceChanges: 1
+--- !u!114 &576087483259470613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232598952313341162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2e2b3a79a768e499ef8082a6b92bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handType: 2
+  grabing:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  calculatedVelocity: {x: 0, y: 0, z: 0}
+  grabbingSomething: 0
+  tryingToGrabSomething: 0
+  maxGrabDistance: 32
+  SolidLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!135 &1271228238
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232598952313341162}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!1 &4232598952410263119
 GameObject:
   m_ObjectHideFlags: 0
