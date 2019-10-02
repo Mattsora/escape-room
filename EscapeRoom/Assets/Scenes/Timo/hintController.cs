@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class hintController : MonoBehaviour
 {
     public bool Enabled = true;
@@ -11,7 +11,7 @@ public class hintController : MonoBehaviour
     public float TimeUntilHint = 60.0f;
     public float timer;
 
-    public Text hintOutput;
+    public TextMeshPro hintOutput;
     public List<string> Message = new List<string>();
     internal int currentMessage = -1;
 
