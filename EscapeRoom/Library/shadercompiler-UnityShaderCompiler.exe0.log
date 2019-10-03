@@ -1,5 +1,6 @@
 Base path: 'D:/unity/2019.2.6f1/Editor/Data', plugins path 'D:/unity/2019.2.6f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 
 Quitting shader compiler process
@@ -101,3 +102,5 @@ Cmd: compileSnippet
 Cmd: compileSnippet
   api=4 type=1 insize=2104 outsize=5514 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT pd=UNITY_ENABLE_REFLECTION_BUFFERS UNITY_USE_DITHER_MASK_FOR_ALPHABLENDED_SHADOWS UNITY_PBS_USE_BRDF1 UNITY_SPECCUBE_BOX_PROJECTION UNITY_SPECCUBE_BLENDING UNITY_ENABLE_DETAIL_NORMALMAP SHADER_API_DESKTOP UNITY_LIGHT_PROBE_PROXY_VOLUME UNITY_LIGHTMAP_FULL_HDR ok=1
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
