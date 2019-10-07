@@ -61,7 +61,10 @@ public class modularPlayerControllerVR : MonoBehaviour
         cameraForward.y = 0;
         cameraRight.y = 0;
 
-        moveDirection = cameraForward * moveInput.y + cameraRight * moveInput.x;
+            moveDirection = cameraForward * (moveInput.y * 2f) + cameraRight * moveInput.x;
+      
+        
+        
        
     }
     
@@ -70,15 +73,21 @@ public class modularPlayerControllerVR : MonoBehaviour
         pRigidbody.freezeRotation = true;
         if(movingStick)
         {
+            
+            moveDirection.y = 0;
+           
             pRigidbody.velocity = moveDirection * pWalkSpeed * Time.deltaTime;
         }
-        if (lookInput.x > 0.52f)
+        if (VR_ModeEnabled)
         {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 100.52f * Time.deltaTime, transform.eulerAngles.z);
-        }
-        if (lookInput.x < -0.52f)
-        {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y -100.52f * Time.deltaTime, transform.eulerAngles.z);
+            if (lookInput.x > 0.52f)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 100.52f * Time.deltaTime, transform.eulerAngles.z);
+            }
+            if (lookInput.x < -0.52f)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 100.52f * Time.deltaTime, transform.eulerAngles.z);
+            }
         }
 
     }
@@ -87,6 +96,13 @@ public class modularPlayerControllerVR : MonoBehaviour
         if(collision.collider.gameObject.layer == physicsLayer.value)
         {
             Physics.IgnoreCollision(collision.collider, this.GetComponent<Collider>(), true);
+        }
+        if(collision.rigidbody.GetComponent<modularGrabObject>() && !VR_ModeEnabled)
+        {
+            if(collision.rigidbody.GetComponent<modularGrabObject>().isInventoryCompatible)
+            {
+                collision.rigidbody.GetComponent<modularGrabObject>().ForceAddToInventory(this.GetComponent<modularPlayerControllerVR>());
+            }
         }
     }
     

@@ -26,7 +26,17 @@ public class modularGrabObject : MonoBehaviour
             isInventoryCompatible = true;
         }
     }
-
+    public void ForceAddToInventory(modularPlayerControllerVR player)
+    {
+        if (!alreadyInInventory)
+        {
+            Debug.Log("Should add to inventory");
+            player.GetComponent<PlayerInventory>().AddItemToInventory(this.objInventoryItem);
+            alreadyInInventory = true;
+            gameObject.transform.position = FindObjectOfType<DoorGoal>().transform.position;
+            gameObject.SetActive(false);
+        }
+    }
     // Update is called once per frame
     void Update()
     {

@@ -26,7 +26,7 @@ public class DoorGoal : MonoBehaviour
         if (goalItems.Count>= numberOfGoals && !playerHasWon)
         {
             doorLight.color = new Color(0, 1, 0, 1);
-            doorLight.intensity = 4f;
+            doorLight.intensity = 8f;
             audioSource.Play();
             playerHasWon = true;
         }
@@ -40,7 +40,7 @@ public class DoorGoal : MonoBehaviour
     {
         if(other.GetComponent<modularPlayerControllerVR>() && playerHasWon)
         {
-           
+            FindObjectOfType<Timer>().timerStop = true;
         }
     }
 }

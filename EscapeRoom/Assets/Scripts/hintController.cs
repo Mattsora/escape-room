@@ -20,6 +20,7 @@ public class hintController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         timer = TimeUntilHint;
+        hintOutput.text = "";
         return;
     }
 
