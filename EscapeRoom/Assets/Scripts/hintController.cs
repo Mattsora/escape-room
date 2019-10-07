@@ -10,7 +10,7 @@ public class hintController : MonoBehaviour
 
     public float TimeUntilHint = 60.0f;
     public float timer;
-
+    public AudioSource audioSource;
     public TextMeshPro hintOutput;
     public List<string> Message = new List<string>();
     internal int currentMessage = -1;
@@ -18,7 +18,9 @@ public class hintController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         timer = TimeUntilHint;
+        hintOutput.text = "";
         return;
     }
 
@@ -53,6 +55,12 @@ public class hintController : MonoBehaviour
         {
             currentMessage++;
             hintOutput.text = Message[currentMessage];
+            /*
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer
+                (@"d:\school\Periode_05\project escape room\kraken\escape-room\EscapeRoom\Assets\SoundEffects\notification\ting.mp3");
+                */
+            // player.Play();
+            audioSource.Play();
             timer = TimeUntilHint;
             return;
         }
