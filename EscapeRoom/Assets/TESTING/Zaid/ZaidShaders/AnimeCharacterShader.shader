@@ -14,6 +14,7 @@ Shader "Zaid/Anime/ModularAnimeShader"
 		_Gloss("SpecularGloss",Range(0.0,8)) = 2.0
 		_RimPower("RimPower", Range(0.05,5)) = 5
 		_BumpIntensity("BumpIntensity",Range(0.0,4)) = 2.0
+		_ColorIntensity("ColorIntensity",Range(0.0,255)) = 1.0
 		_AmbientStrength("Ambient Strength", Range(0.00,1.0)) = 0.00
 		_OutlineVal("Outline",Range(0.0,1)) = 1.0
 	}
@@ -90,6 +91,7 @@ Shader "Zaid/Anime/ModularAnimeShader"
 		float _SpecularPower;
 		float _Gloss;
 		float _BumpIntensity;
+		float _ColorIntensity;
 		float _RimPower;
 		float _OutlineVal;
 		sampler2D _MainTex;
@@ -128,7 +130,7 @@ Shader "Zaid/Anime/ModularAnimeShader"
 	
 		void surf(Input IN, inout SurfaceOutput o) {
 
-			fixed4 finalColor = tex2D(_MainTex, IN.uv_MainTex).rgba*_Color;
+			fixed4 finalColor = tex2D(_MainTex, IN.uv_MainTex).rgba*_Color*_ColorIntensity;
 			o.Gloss = 100;
 			half rim = 1 - saturate(dot(IN.viewDir,  o.Normal));
 			o.Emission =  (_RimColor.rgb )*pow(rim / 8, 1.5)*_RimPower;
