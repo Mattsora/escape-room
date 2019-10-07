@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Valve.VR;
 public class modularGrabController : MonoBehaviour
 {
+    public modularPlayerControllerVR pCharacter;
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean grabing;
     public Vector3 calculatedVelocity;
@@ -22,7 +23,7 @@ public class modularGrabController : MonoBehaviour
     void Start()
     {
         pose = GetComponent<SteamVR_Behaviour_Pose>();
-      
+        
        
     }
     public bool GetGrab()
@@ -82,6 +83,6 @@ public class modularGrabController : MonoBehaviour
         }
         
         lastPosition = transform.position;
-        Debug.Log(calculatedVelocity);
+    
     }
 }

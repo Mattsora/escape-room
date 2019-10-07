@@ -12,7 +12,10 @@ public class PlayerInventory : MonoBehaviour
     {
         obSystem = FindObjectOfType<objectiveSystem>();
     }
-
+    public void AddItemToInventory(inventoryItem item)
+    {
+        items.Add(item);
+    }
     // Update is called once per frame
     void Update()
     {
