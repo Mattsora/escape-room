@@ -19,6 +19,7 @@ public class PlayerInventory : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (obSystem.objectiveIsKey)
         {
             for (int i = 0; i < items.Count; i++)
@@ -29,5 +30,6 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+        */
     }
 }

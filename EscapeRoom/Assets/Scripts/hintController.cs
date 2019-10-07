@@ -7,7 +7,8 @@ using TMPro;
 public class hintController : MonoBehaviour
 {
     public bool Enabled = true;
-
+    public bool showWinText;
+    public bool showEscapeText;
     public float TimeUntilHint = 60.0f;
     public float timer;
     public AudioSource audioSource;
@@ -41,32 +42,42 @@ public class hintController : MonoBehaviour
                 timer -= Time.deltaTime;
             }
         }
-        else
-        {
-            return;
-        }
-        
-       
-    }
+    
 
+        if (showWinText)
+        {
+            showEscapeText = false;
+            hintOutput.text = "ESCAPED!!!";
+        }
+        if (showEscapeText)
+        {
+            showWinText = false;
+            hintOutput.text = "Head for the exit!!!";
+        }
+    }
+    
     private void timerEnded()
     {
-        if(currentMessage <= (Message.Count - 1))
+    
+        if (!showWinText && !showEscapeText)
         {
-            currentMessage++;
-            hintOutput.text = Message[currentMessage];
-            /*
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer
-                (@"d:\school\Periode_05\project escape room\kraken\escape-room\EscapeRoom\Assets\SoundEffects\notification\ting.mp3");
-                */
-            // player.Play();
-            audioSource.Play();
-            timer = TimeUntilHint;
-            return;
-        }
-        else
-        {
-            Enabled = false;
+            if (currentMessage <= (Message.Count - 1))
+            {
+                currentMessage++;
+                hintOutput.text = Message[currentMessage];
+                /*
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer
+                    (@"d:\school\Periode_05\project escape room\kraken\escape-room\EscapeRoom\Assets\SoundEffects\notification\ting.mp3");
+                    */
+                // player.Play();
+                audioSource.Play();
+                timer = TimeUntilHint;
+                return;
+            }
+            else
+            {
+                Enabled = false;
+            }
         }
     }
 }

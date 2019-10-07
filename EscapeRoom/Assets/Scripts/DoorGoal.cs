@@ -29,6 +29,8 @@ public class DoorGoal : MonoBehaviour
             doorLight.intensity = 8f;
             audioSource.Play();
             playerHasWon = true;
+            FindObjectOfType<hintController>().Enabled = false;
+            FindObjectOfType<hintController>().showEscapeText = true;
         }
       
         
@@ -41,6 +43,9 @@ public class DoorGoal : MonoBehaviour
         if(other.GetComponent<modularPlayerControllerVR>() && playerHasWon)
         {
             FindObjectOfType<Timer>().timerStop = true;
+            FindObjectOfType<hintController>().Enabled = false;
+            FindObjectOfType<hintController>().showWinText = true;
+          
         }
     }
 }
