@@ -17,6 +17,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(timerStop)
+        {
+            startTime = Time.time;
+            timerText.text = "";
+        }
         if (!timerStop)
         {
             float t = Time.time - startTime;

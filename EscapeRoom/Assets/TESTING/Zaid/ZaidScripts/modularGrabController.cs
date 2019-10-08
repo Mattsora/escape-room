@@ -36,7 +36,7 @@ public class modularGrabController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
-            if (other.gameObject.GetComponent<modularGrabObject>() && tryingToGrabSomething && !grabbingSomething)
+            if (other.gameObject.GetComponent<modularGrabObject>() && tryingToGrabSomething && !grabbingSomething && other.gameObject.GetComponent<modularGrabObject>().canHold)
             {
                 grabbedObject = other.gameObject.GetComponent<modularGrabObject>();
                 grabbedObject.holderObject = this.transform;

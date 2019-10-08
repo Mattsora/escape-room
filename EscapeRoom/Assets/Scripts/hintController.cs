@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 public class hintController : MonoBehaviour
 {
+    public bool lockHintController;
     public bool Enabled = true;
     public bool showWinText;
     public bool showEscapeText;
@@ -29,30 +30,32 @@ public class hintController : MonoBehaviour
     void Update()
     {
         // Timer until next hint is shown 
-
-        if(Enabled == true)
+        if (!lockHintController)
         {
-            if (timer <= 0.0f)
+            if (Enabled == true)
             {
-                timerEnded();
-                return;
+                if (timer <= 0.0f)
+                {
+                    timerEnded();
+                    return;
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
             }
-            else
-            {
-                timer -= Time.deltaTime;
-            }
-        }
-    
 
-        if (showWinText)
-        {
-            showEscapeText = false;
-            hintOutput.text = "ESCAPED!!!";
-        }
-        if (showEscapeText)
-        {
-            showWinText = false;
-            hintOutput.text = "Head for the exit!!!";
+
+            if (showWinText)
+            {
+                showEscapeText = false;
+                hintOutput.text = "ESCAPED!!!";
+            }
+            if (showEscapeText)
+            {
+                showWinText = false;
+                hintOutput.text = "Head for the exit!!!";
+            }
         }
     }
     
