@@ -61,7 +61,7 @@ public class modularPlayerControllerVR : MonoBehaviour
         cameraForward.y = 0;
         cameraRight.y = 0;
 
-            moveDirection = cameraForward * (moveInput.y * 2f) + cameraRight * moveInput.x;
+            moveDirection = cameraForward * moveInput.y + cameraRight * moveInput.x;
       
         
         
