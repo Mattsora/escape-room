@@ -20,6 +20,19 @@ public class VrFade : MonoBehaviour
     {
 
     }
+    public void FadeIn()
+    {
+        if(!fadedIn)
+        {
+            fadeImage.color = new Color(0, 0, 0, 0);
+            fadedIn = true;
+        }
+
+            x = x + -0.025f * Time.deltaTime;
+            fadeImage.color = new Color(0, 0, 0, x);
+
+        
+    }
     // Update is called once per frame
     void Update()
     {

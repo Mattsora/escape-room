@@ -14,7 +14,7 @@ public class mainMenu : MonoBehaviour
     public void LoadFirstLevel()
     {
         Debug.Log("START BUTTON IS PRESSED");
-        SceneManager.LoadScene("EscapeRoomAaronScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("tutorial", LoadSceneMode.Single);
     }
     public void QuitGame()
     {
