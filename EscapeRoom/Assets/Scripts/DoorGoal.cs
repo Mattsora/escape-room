@@ -54,6 +54,7 @@ public class DoorGoal : MonoBehaviour
         }
         else
         {
+            FindObjectOfType<Timer>().SendTimeToTracker();
             SceneManager.LoadScene(winTransition, LoadSceneMode.Single);
         }
     }
