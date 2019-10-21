@@ -8,7 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/aaron/mainmenuscene.unity
     guid: 7e143755f1ef81540863027abfe52638
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/aaron/EscapeRoomAaronScene.unity
     guid: c4b5bfa647063414d8623768bc0f4235
+  - enabled: 1
+    path: Assets/Scenes/tutorial.unity
+    guid: 6e9506819c17f364580d7cb5e0cdfca2
+  - enabled: 1
+    path: Assets/Scenes/Floor_1.unity
+    guid: 82b0b322ee6fdab4088973e55f2fbb3a
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: 89af27dbcfbaf5f4384b0286bfeabb43
   m_configObjects: {}

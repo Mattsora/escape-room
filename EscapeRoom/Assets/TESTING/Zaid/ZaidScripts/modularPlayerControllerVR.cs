@@ -7,6 +7,7 @@ using Valve.VR;
 using Cinemachine;
 public class modularPlayerControllerVR : MonoBehaviour
 {
+    public bool canMove;
     public Camera pCamera; //The main camera of the scene
     public Rigidbody pRigidbody; //PlayerRigidbody;
     public bool VR_ModeEnabled; //Determines if VR accomidations must be met or not.
@@ -61,7 +62,7 @@ public class modularPlayerControllerVR : MonoBehaviour
         cameraForward.y = 0;
         cameraRight.y = 0;
 
-            moveDirection = cameraForward * (moveInput.y * 2f) + cameraRight * moveInput.x;
+            moveDirection = cameraForward * moveInput.y + cameraRight * moveInput.x;
       
         
         
@@ -119,8 +120,13 @@ public class modularPlayerControllerVR : MonoBehaviour
             pCamera.stereoTargetEye = StereoTargetEyeMask.None;
             pCamera.GetComponent<CinemachineVirtualCamera>().m_Lens.FieldOfView = 95f;
         }
-        getInput();
-        getCameraDirection();
-        movePlayer();
+        if (canMove)
+        {
+            getInput();
+        }
+            getCameraDirection();
+        
+            movePlayer();
+        
     }
 }
