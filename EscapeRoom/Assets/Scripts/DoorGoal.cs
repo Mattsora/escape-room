@@ -13,12 +13,22 @@ public class DoorGoal : MonoBehaviour
     PlayerInventory pInventory;
     float countDownTime;
     public float countDownWaitTime;
-    bool countDownToEnd;
+    public bool countDownToEnd;
+    bool cameraScriptInLevel = false;
     VrFade vrFade;
+    public CameraController cameraScript;
     // Start is called before the first frame update
     void Start()
     {
-
+        try
+        {
+            cameraScript = FindObjectOfType<CameraController>();
+            cameraScriptInLevel = true;
+        }
+        catch
+        {
+            Debug.Log("No cam controller in level");
+        }
         pInventory = FindObjectOfType<PlayerInventory>();
         doorLight = GetComponent<Light>();
         audioSource = GetComponent<AudioSource>();
@@ -62,11 +72,20 @@ public class DoorGoal : MonoBehaviour
     {
         if(other.GetComponent<modularPlayerControllerVR>() && playerHasWon)
         {
-            FindObjectOfType<Timer>().timerStop = true;
-            FindObjectOfType<hintController>().Enabled = false;
-            FindObjectOfType<hintController>().showWinText = true;
-            countDownToEnd = true;
-            
+
+            if (!cameraScriptInLevel)
+            {
+                FindObjectOfType<Timer>().timerStop = true;
+                FindObjectOfType<hintController>().Enabled = false;
+                FindObjectOfType<hintController>().showWinText = true;
+                countDownToEnd = true;
+            }
+            else
+            {
+                cameraScript.Enabled = false;
+            }
+
         }
+       
     }
 }

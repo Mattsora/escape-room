@@ -18,9 +18,12 @@ namespace VRKeys {
 	/// </summary>
 	public class CancelKey : Key {
 
+        CameraController cameraController;
 		public override void HandleTriggerEnter (Collider other) {
 			keyboard.Cancel ();
-		}
+            cameraController = FindObjectOfType<CameraController>();
+            cameraController.Enabled = true;
+        }
 
 		public override void UpdateLayout (Layout translation) {
 			label.text = translation.cancelButtonLabel;
