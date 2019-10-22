@@ -24,13 +24,20 @@ namespace VRKeys {
 		/// Reference to the VRKeys keyboard.
 		/// </summary>
 		public Keyboard keyboard;
+<<<<<<< HEAD
         public GeneratePasscode numbers;
+=======
+>>>>>>> master
 
 		/// <summary>
 		/// See the following for why this is so convoluted:
 		/// http://referencesource.microsoft.com/#System.ComponentModel.DataAnnotations/DataAnnotations/EmailAddressAttribute.cs,54
 		/// http://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx/
 		/// </summary>
+<<<<<<< HEAD
+=======
+		private Regex emailValidator = new Regex (@"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$", RegexOptions.IgnoreCase);
+>>>>>>> master
 
 		/// <summary>
 		/// Show the keyboard with a custom input message. Attaching events dynamically,
@@ -38,7 +45,11 @@ namespace VRKeys {
 		/// </summary>
 		private void OnEnable () {
 			// Automatically creating camera here to show how
+<<<<<<< HEAD
 			GameObject camera = new GameObject ("KeyboardCamera");
+=======
+			GameObject camera = new GameObject ("Main Camera");
+>>>>>>> master
 			Camera cam = camera.AddComponent<Camera> ();
 			cam.nearClipPlane = 0.1f;
 			camera.AddComponent<AudioListener> ();
@@ -48,6 +59,10 @@ namespace VRKeys {
 			canvas.worldCamera = cam;
 
 			keyboard.Enable ();
+<<<<<<< HEAD
+=======
+			keyboard.SetPlaceholderMessage ("Please enter your email address");
+>>>>>>> master
 
 			keyboard.OnUpdate.AddListener (HandleUpdate);
 			keyboard.OnSubmit.AddListener (HandleSubmit);
@@ -87,8 +102,11 @@ namespace VRKeys {
 			} else if (Input.GetKeyDown (KeyCode.D)) {
 				keyboard.SetLayout (KeyboardLayout.Dvorak);
 			}
+<<<<<<< HEAD
             numbers = GameObject.FindObjectOfType<GeneratePasscode>();
           
+=======
+>>>>>>> master
 		}
 
 		/// <summary>
@@ -104,18 +122,31 @@ namespace VRKeys {
 		public void HandleSubmit (string text) {
 			keyboard.DisableInput ();
 
+<<<<<<< HEAD
+=======
+			if (!ValidateEmail (text)) {
+				keyboard.ShowValidationMessage ("Please enter a valid email address");
+				keyboard.EnableInput ();
+				return;
+			}
+
+>>>>>>> master
 			StartCoroutine (SubmitEmail (text));
 		}
 
 		public void HandleCancel () {
 			Debug.Log ("Cancelled keyboard input!");
+<<<<<<< HEAD
             
+=======
+>>>>>>> master
 		}
 
 		/// <summary>
 		/// Pretend to submit the email before resetting.
 		/// </summary>
 		private IEnumerator SubmitEmail (string email) {
+<<<<<<< HEAD
 
            if (keyboard.text == FindObjectOfType<SetPasscode>().GenerateCombinedNumber())
             {
@@ -133,6 +164,26 @@ namespace VRKeys {
                 FindObjectOfType<DoorGoal>().countDownToEnd = true;
             }
 			
+=======
+			keyboard.ShowInfoMessage ("Sending lots of spam, please wait... ;)");
+
+			yield return new WaitForSeconds (2f);
+
+			keyboard.ShowSuccessMessage ("Lots of spam sent to " + email);
+
+			yield return new WaitForSeconds (2f);
+
+			keyboard.HideSuccessMessage ();
+			keyboard.SetText ("");
+			keyboard.EnableInput ();
+		}
+
+		private bool ValidateEmail (string text) {
+			if (!emailValidator.IsMatch (text)) {
+				return false;
+			}
+			return true;
+>>>>>>> master
 		}
 	}
 }

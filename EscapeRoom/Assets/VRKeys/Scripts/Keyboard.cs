@@ -358,7 +358,10 @@ namespace VRKeys {
 		/// </summary>
 		public void Submit () {
 			OnSubmit.Invoke (text);
+<<<<<<< HEAD
             
+=======
+>>>>>>> master
 		}
 
 		/// <summary>
